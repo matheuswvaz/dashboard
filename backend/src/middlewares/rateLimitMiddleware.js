@@ -1,8 +1,7 @@
+const MESSAGE_LIMIT_PER_IP = 20;
+const RESET_INTERVAL_MS = 60 * 60 * 1000;
 
-const MESSAGE_LIMIT_PER_IP = 20; // Exemplo: 10 mensagens por IP
-const RESET_INTERVAL_MS = 60 * 60 * 1000; // Exemplo: Resetar a cada 1 hora (em milissegundos)
-
-const messageCounts = {}; // Armazena a contagem de mensagens por IP
+const messageCounts = {};
 
 const rateLimitMiddleware = (req, res, next) => {
     const userIp = req.ip;
@@ -11,7 +10,6 @@ const rateLimitMiddleware = (req, res, next) => {
         messageCounts[userIp] = { count: 0, timestamp: Date.now() };
     }
 
-    // Reseta a contagem se o intervalo de tempo for excedido
     if (Date.now() - messageCounts[userIp].timestamp > RESET_INTERVAL_MS) {
         messageCounts[userIp].count = 0;
         messageCounts[userIp].timestamp = Date.now();
@@ -22,8 +20,8 @@ const rateLimitMiddleware = (req, res, next) => {
             error: "Limite de mensagens atingido.",
             message: `Você atingiu o limite de ${MESSAGE_LIMIT_PER_IP} mensagens por hora. Por favor, aguarde ou entre em contato conosco para mais assistência.`,
             contactInfo: {
-                phone: "(85) 9 9115-5111",
-                email: "faleconosco@nepen.org.br",
+                phone: "(XX) X XXXX-XXXX", 
+                email: "contato@seudominio.com", 
             },
         });
     }
@@ -32,7 +30,7 @@ const rateLimitMiddleware = (req, res, next) => {
     console.log(
         `IP: ${userIp}, Mensagens: ${messageCounts[userIp].count}/${MESSAGE_LIMIT_PER_IP}`
     );
-    next(); // Continua para a próxima função middleware ou rota
+    next();
 };
 
 export default rateLimitMiddleware;

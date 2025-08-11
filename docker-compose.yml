@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  # Serviço de Backend (Node.js - Express)
+  app:
+    build:
+      context: ./backend  
+      dockerfile: Dockerfile.backend
+    container_name: meu_dashboard_backend 
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env 
+    environment:
+      - DB_HOST=db
+    ports:
+      - "${PORT:-5000}:${PORT:-5000}"
+    volumes:
+      - ./backend:/usr/src/app
+      - ./backend/uploads:/usr/src/uploads
+      - /usr/src/app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - meu_dashboard_network 
+
+  # Serviço de Frontend (React)
+  client:
+    build:
+      context: ./frontend 
+      dockerfile: Dockerfile.frontend 
+    container_name: meu_dashboard_frontend 
+    restart: unless-stopped
+    ports:
+      - "${REACT_APP_PORT:-3000}:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_BASE_URL=http://app:5000
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - app
+    networks:
+      - meu_dashboard_network 
+
+  # Serviço de Banco de Dados (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: meu_dashboard_db 
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-meu_dashboard_db}
+      MYSQL_USER: ${DB_USER:-usuario}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-senha}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-senharaiz}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backend/db_setup/schema.sql:/docker-entrypoint-initdb.d/schema.sql 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$DB_USER", "-p$$DB_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - meu_dashboard_network 
+
+volumes:
+  db_data:
+
+networks:
+  meu_dashboard_network: 
+    driver: bridge

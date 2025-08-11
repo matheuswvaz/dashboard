@@ -13,12 +13,12 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-import { usePosts } from "../../../hooks/usePosts";
-import CriarPost from "../../CriarPost";
+import { usePosts } from "../../hooks/usePosts";
+import CriarPost from "./CriarPost";
 import { TextButton } from "../ui/Button";
-import apiClient from "../../../utils/axios";
-import CustomSelect from "../../CustomSelect";
-import "../../../styles/CustomSelect.css";
+import apiClient from "../../utils/axios";
+import CustomSelect from "../ui/CustomSelect";
+import "../../styles/CustomSelect.css";
 
 // ============================================================================
 // COMPONENTE: PostCard (Card de Post Individual com Seleção)

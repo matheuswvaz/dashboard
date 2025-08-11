@@ -2,15 +2,14 @@ import db from "../config/database.js";
 import transporter from "../config/mailer.js";
 import env from "../config/env.js";
 import { successResponse, errorResponse } from "../utils/responseHandler.js";
+import fs from "fs"; 
 
-// Função para criar uma nova candidatura 
 export const createCandidatura = async (req, res) => {
   const { nome, email, telefone, vaga, resumo } = req.body;
   const anexo = req.file;
 
   if (!nome || !email || !telefone || !vaga || !anexo) {
     if (anexo) {
-      // Se um arquivo foi enviado mas faltam outros campos, remova o arquivo para não deixar lixo no servidor
       fs.promises
         .unlink(anexo.path)
         .catch((err) =>
@@ -30,10 +29,9 @@ export const createCandidatura = async (req, res) => {
       [nome, email, telefone, vaga, resumo, anexo.filename, "Recebida"]
     );
 
-    // Enviar um email de notificação para o admin
     const mailOptions = {
       from: `"${env.EMAIL_USER}" <${env.EMAIL_USER}>`,
-      to: env.CONTACT_EMAIL, // E-mail do admin para receber notificações
+      to: env.CONTACT_EMAIL,
       subject: `Nova Candidatura Recebida para a Vaga: ${vaga}`,
       html: `<p>Uma nova candidatura foi submetida por <strong>${nome}</strong> (${email}) para a vaga de <strong>${vaga}</strong>.</p><p>Acesse o painel de administração para mais detalhes.</p>`,
     };
@@ -48,7 +46,6 @@ export const createCandidatura = async (req, res) => {
   } catch (err) {
     console.error("Erro ao criar candidatura:", err);
     if (anexo) {
-      // Remove o arquivo em caso de erro no banco de dados
       fs.promises
         .unlink(anexo.path)
         .catch((unlinkErr) =>
@@ -63,7 +60,6 @@ export const createCandidatura = async (req, res) => {
   }
 };
 
-// Função para listar todas as candidaturas (para o admin)
 export const listCandidaturas = async (req, res) => {
   try {
     const [candidaturas] = await db.execute(
@@ -84,7 +80,6 @@ export const listCandidaturas = async (req, res) => {
   }
 };
 
-// Função para atualizar o status de uma candidatura
 export const updateCandidaturaStatus = async (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -111,7 +106,6 @@ export const updateCandidaturaStatus = async (req, res) => {
   }
 };
 
-// Função para enviar e-mail de resposta ao candidato
 export const responderCandidato = async (req, res) => {
   const { id } = req.params;
   const { assunto, mensagem } = req.body;
@@ -137,12 +131,12 @@ export const responderCandidato = async (req, res) => {
       html: `
         <div style="font-family: Arial, sans-serif; line-height: 1.6;">
           <p>Olá, ${candidato.nome},</p>
-          <p>Agradecemos seu interesse em fazer parte da equipe do Grupo Nepen.</p>
+          <p>Agradecemos seu interesse em fazer parte da nossa equipe.</p>
           <hr style="border: none; border-top: 1px solid #eee;" />
           <p>${mensagem.replace(/\n/g, "<br>")}</p>
           <hr style="border: none; border-top: 1px solid #eee;" />
           <p>Atenciosamente,</p>
-          <p><strong>Equipe de Recrutamento - Grupo Nepen</strong></p>
+          <p><strong>Equipe de Recrutamento - Dashboard Matheus</strong></p> 
         </div>
       `,
     };

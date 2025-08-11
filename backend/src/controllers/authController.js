@@ -22,14 +22,6 @@ export const registerAdmin = async (req, res) => {
     return errorResponse(res, "Formato de e-mail inválido.", 400);
   }
 
-  if (!email.toLowerCase().endsWith("@nepen.org.br")) {
-    return errorResponse(
-      res,
-      "Cadastro permitido apenas para e-mails do domínio @nepen.org.br.",
-      400
-    );
-  }
-
   try {
     const [userRows] = await db.execute(
       "SELECT id FROM credenciais WHERE username = ? OR email = ?",
@@ -53,7 +45,6 @@ export const registerAdmin = async (req, res) => {
       console.error(
         "ERRO DE CONFIGURAÇÃO: As credenciais de e-mail (EMAIL_USER, EMAIL_PASS) não estão definidas no arquivo .env. O e-mail de verificação não pode ser enviado."
       );
-      // Retorna um erro específico para o desenvolvedor saber o que fazer
       return errorResponse(
         res,
         "Erro na configuração do servidor que impede o envio de e-mails. Verifique as variáveis de ambiente.",
@@ -64,7 +55,7 @@ export const registerAdmin = async (req, res) => {
     const mailOptions = {
       from: `"${env.EMAIL_USER}" <${env.EMAIL_USER}>`,
       to: email,
-      subject: "Verifique seu E-mail - Grupo Nepen",
+      subject: "Verifique seu E-mail - Dashboard Matheus", // ALTERADO
       html: `<p>Olá ${username},</p><p>Obrigado por se cadastrar. Por favor, clique no link a seguir para ativar sua conta:</p><a href="${verificationLink}" style="display: inline-block; padding: 12px 25px; margin: 20px 0; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Ativar Conta</a><p>Este link é válido por 24 horas.</p>`,
     };
 

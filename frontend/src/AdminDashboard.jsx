@@ -1,36 +1,36 @@
 import React, { useState, useCallback, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import "../styles/AdminDashboard.css";
+import "./styles/AdminDashboard.css";
 
 // Hooks
-import useUserData from "../hooks/useUserData";
+import useUserData from "./hooks/useUserData";
 
 // Componentes de UI
-import Sidebar from "../componentes/admin/ui/Sidebar";
-import FeedbackPopup from "../componentes/admin/ui/FeedbackPopup";
+import Sidebar from "./admin/ui/Sidebar";
+import FeedbackPopup from "./admin/ui/FeedbackPopup";
 
 // Seções carregadas de forma otimizada (Lazy Loading)
 // Isso melhora o tempo de carregamento inicial da dashboard.
 const ResumoSection = React.lazy(
-  () => import("../componentes/admin/secoes/ResumoSection")
+  () => import("./admin/secoes/ResumoSection")
 );
 const EstatisticasSection = React.lazy(
-  () => import("../componentes/admin/secoes/EstatisticasSection")
+  () => import("./admin/secoes/EstatisticasSection")
 );
 const PostagensSection = React.lazy(
-  () => import("../componentes/admin/secoes/PostagensSection")
+  () => import("./admin/secoes/PostagensSection")
 );
 const LeadsSection = React.lazy(
-  () => import("../componentes/admin/secoes/LeadsSection")
+  () => import("./admin/secoes/LeadsSection")
 );
 const CandidaturasSection = React.lazy(
-  () => import("../componentes/admin/secoes/CandidaturasSection")
+  () => import("./admin/secoes/CandidaturasSection")
 );
 const GeolocalizacaoSection = React.lazy(
-  () => import("../componentes/admin/secoes/GeolocalizacaoSection")
+  () => import("./admin/secoes/GeolocalizacaoSection")
 );
 const ConfiguracoesSection = React.lazy(
-  () => import("../componentes/admin/secoes/ConfiguracoesSection")
+  () => import("./admin/secoes/ConfiguracoesSection")
 );
 
 // Mapeamento para renderizar o componente correto

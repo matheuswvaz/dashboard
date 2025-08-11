@@ -1,9 +1,9 @@
 import React from "react";
-import { useLeads } from "../../../hooks/useLeads";
+import { useLeads } from "../../hooks/useLeads";
 import { FaListAlt } from "react-icons/fa";
 import { Button } from "../ui/Button";
 import DataTable from "../ui/DataTable"; // Componente de UI reutilizável
-import { formatDateSafe } from "../../../utils/formatDate";
+import { formatDateSafe } from "../../utils/formatDate";
 
 const LeadsSection = ({ showFeedback }) => {
   const { loading, searchTerm, setSearchTerm, filteredLeads, handleDownload } =

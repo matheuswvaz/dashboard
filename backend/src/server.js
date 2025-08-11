@@ -94,7 +94,7 @@ app.use("/", allRoutes);
 // INICIO DO MIDDLEWARE PARA ROTAS NÃO ENCONTRADAS (404)
 app.use((req, res, next) => {
   console.log(
-    `❌ 404 - Route not handled by API: ${req.method} ${req.originalUrl}`
+    `❌ 404 - Rota não encontrada para API: ${req.method} ${req.originalUrl}`
   );
   errorResponse(res, `Cannot ${req.method} ${req.originalUrl}`, 404);
 });

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import apiClient from "../../../utils/axios";
+import apiClient from "../../utils/axios";
 import { FaChartBar } from "react-icons/fa";
 import ChartDisplay from "../ui/ChartDisplay"; // Componente de UI para o gráfico
 

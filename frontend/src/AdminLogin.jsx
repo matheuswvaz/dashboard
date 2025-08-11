@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "../utils/axios";
+import axios from "./utils/axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/AdminLogin.css";
+import "./styles/AdminLogin.css";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { motion } from "framer-motion";
 
@@ -240,10 +240,7 @@ const AdminLogin = () => {
         key={isLoginMode || resetPasswordMode} // A chave muda quando o modo muda, forçando a re-animação
       >
         <div className="login-header">
-          <motion.div className="login-logo" variants={itemVariants}>
-            <img src="/logo-final.png" alt="logo do nepen e constanta"></img>
-          </motion.div>
-          <motion.h2 variants={itemVariants}>{getTitle()}</motion.h2>
+          <motion.h2 variants={itemVariants}>Dashboard Matheus</motion.h2>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form" noValidate>

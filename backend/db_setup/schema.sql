@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `candidaturas` (
   `vaga` VARCHAR(255) NOT NULL,
   `resumo` TEXT,
   `caminho_anexo` VARCHAR(512) NOT NULL,
-  `status` VARCHAR(50) NOT NULL DEFAULT 'Recebida', -- Ex: Recebida, Em Análise, Aprovada, Rejeitada
+  `status` VARCHAR(50) NOT NULL DEFAULT 'Recebida',
   `data_envio` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -119,6 +119,5 @@ CREATE INDEX `idx_access_logs_ip_address` ON `access_logs`(`ip_address`);
 -- Lembre de substituir pela hash do bcrypt:
 -- Gerar uma senha com bcrypt: https://bcrypt-generator.com/
 -- INSERT INTO `credenciais` (`username`, `email`, `password`)
--- VALUES ('admin', 'admin@nepen.org.br', '$2b$10$abcde12345...');
 
 SET FOREIGN_KEY_CHECKS=1;

@@ -2,7 +2,7 @@
 import React from "react";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import GeolocationMap from "../ui/GeolocationMap"; // Seu componente de mapa existente
-import apiClient from '../../../utils/axios'; 
+import apiClient from '../../utils/axios'; 
 const GeolocalizacaoSection = () => {
   return (
     <div className="app-dashboard-section">

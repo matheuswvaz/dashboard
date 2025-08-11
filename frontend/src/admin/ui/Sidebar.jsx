@@ -101,29 +101,14 @@ const Sidebar = ({ userData, activeSection, setActiveSection, onLogout }) => {
         aria-label="Menu Principal"
       >
         <div className="app-sidebar-header">
-          {/* Logo Link */}
-          <Link
-            to="/"
-            className="app-logo-link"
-            title="Ir para o site"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-           
+          {/* Logo foi substituído por texto */}
+          <div className="app-logo-link">
             {sidebarCollapsed ? (
-              <img
-                src="/logo-colapsed.png" 
-                alt="Logo N"
-                className="logo-icon-collapsed"
-              />
+              <h1 className="logo-icon-collapsed" style={{margin: 'auto'}}>M</h1>
             ) : (
-              <img
-                src="/logo-final.png" 
-                alt="Logo NEPEN Painel"
-                className="logo-full"
-              />
+              <h2 className="logo-full">Dashboard Matheus</h2>
             )}
-          </Link>
+          </div>
           {/* Desktop Sidebar Toggle Button */}
           <button
             className="app-sidebar-toggle desktop"

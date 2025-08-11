@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import apiClient from "../../../utils/axios";
-import { getCroppedImgUtil } from "../../../utils/imageUtils";
+import apiClient from "../../utils/axios";
+import { getCroppedImgUtil } from "../../utils/imageUtils";
 import Cropper from "react-easy-crop";
 import { Button } from "../ui/Button";
 import {

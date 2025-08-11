@@ -1,5 +1,5 @@
 import React from "react";
-import { useCandidaturas } from "../../../hooks/useCandidaturas";
+import { useCandidaturas } from "../../hooks/useCandidaturas";
 import { FaAddressCard } from "react-icons/fa";
 import { Button } from "../ui/Button";
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import apiClient from "../../../utils/axios";
-import { formatDateSafe } from "../../../utils/formatDate";
+import apiClient from "../../utils/axios";
+import { formatDateSafe } from "../../utils/formatDate";
 import {
   FaEye,
   FaCalendarAlt,
