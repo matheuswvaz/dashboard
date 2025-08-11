@@ -1,0 +1,51 @@
+.editor-wrapper {
+  border: 1px solid #f1f1f1;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.editor-content {
+  min-height: 200px;
+  padding: 10px;
+  font-family: inherit;
+}
+
+.rdw-editor-toolbar {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #f1f1f1;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.rdw-option-wrapper {
+  min-width: 30px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+.rdw-option-wrapper:hover {
+  box-shadow: 0 0 0 1px #007bff;
+}
+
+.rdw-option-active {
+  background-color: #007bff;
+  color: white;
+}
+
+.rdw-dropdown-wrapper {
+  height: 30px;
+  border-radius: 4px;
+}
+
+.rdw-dropdown-wrapper:hover {
+  box-shadow: 0 0 0 1px #007bff;
+}
+
+.rdw-dropdown-optionwrapper {
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.rdw-dropdown-optionwrapper:hover {
+  background-color: #f8f9fa;
+} 

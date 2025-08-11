@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # Serviço de Backend (Node.js - Express)
+  app:
+    build:
+      context: ./src 
+      dockerfile: Dockerfile.backend
+    container_name: nep_backend
+    restart: unless-stopped
+    env_file:
+      - ./src/.env
+    environment:
+      - NODE_ENV=development # Ou production
+      - PORT=${PORT:-5000}
+      - DB_HOST=db # Nome do serviço do contêiner MySQL
+      - DB_USER=${DB_USER:-usuario} # Substitua pelo seu usuário do BD
+      - DB_PASSWORD=${DB_PASSWORD:-senha} # Substitua pela sua senha do BD
+      - DB_NAME=${DB_NAME:-nepen_db} # Substitua pelo nome do seu BD
+      # Adicione outras variáveis de ambiente de src/config/env.js conforme necessário
+      # Ex: JWT_SECRET, EMAIL_USER, EMAIL_PASS, etc.
+      - JWT_SECRET=${JWT_SECRET:-seu_jwt_secret}
+      - JWT_RESET_SECRET=${JWT_RESET_SECRET:-seu_jwt_reset_secret}
+      - EMAIL_USER=${EMAIL_USER:-seu_email_usuario}
+      - EMAIL_PASS=${EMAIL_PASS:-sua_email_senha}
+      - CONTACT_EMAIL=${CONTACT_EMAIL:-contato@exemplo.com}
+      - CLIENT_URL=http://localhost:3000 # Ou a URL do seu frontend
+      - BASE_URL=http://localhost:5000
+      - UPLOAD_BASE_URL=/uploads
+    ports:
+      - "${PORT:-5000}:${PORT:-5000}"
+    volumes:
+      - ./src:/usr/src/app # Monta o diretório src para desenvolvimento
+      - ./uploads:/usr/src/uploads # Monta o diretório de uploads
+      - /usr/src/app/node_modules # Volume para node_modules para evitar sobrescrever pelo mount local
+    depends_on:
+      db:
+        condition: service_healthy # Garante que o BD esteja saudável antes de iniciar o app
+    networks:
+      - nep_network
+
+  # Serviço de Frontend (React)
+  client:
+    build:
+      context: . # Assume que sua aplicação React está no diretório raiz
+      dockerfile: Dockerfile.frontend # Você precisará criar este Dockerfile
+    container_name: nep_frontend
+    restart: unless-stopped
+    ports:
+      - "${REACT_APP_PORT:-3000}:3000" # Porta padrão do React
+    volumes:
+      - .:/app # Monta o diretório raiz para desenvolvimento
+      - /app/node_modules # Volume para node_modules
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_BASE_URL=http://app:5000 # Nome do serviço de backend e porta
+      - CHOKIDAR_USEPOLLING=true # Pode ser necessário para hot reloading no Docker
+    depends_on:
+      - app
+    networks:
+      - nep_network
+
+  # Serviço de Banco de Dados (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: nep_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-nepen_db}
+      MYSQL_USER: ${DB_USER:-usuario}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-senha}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-senharaiz} # Defina uma senha root
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - db_data:/var/lib/mysql # Persiste os dados do banco de dados
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql # Monta o schema.sql para inicialização
+    healthcheck: # Verifica a saúde do serviço MySQL
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u$$DB_USER", "-p$$DB_PASSWORD"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nep_network
+
+volumes:
+  db_data: # Volume nomeado para persistência do banco de dados
+
+networks:
+  nep_network: # Rede customizada para comunicação entre os contêineres
+    driver: bridge

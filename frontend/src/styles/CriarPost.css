@@ -1,0 +1,493 @@
+/* ==========================================================================
+   Estrutura e Layout Principal (Estilo WordPress/Ghost)
+   ========================================================================== */
+
+/* --- Início: Editor Tiptap --- */
+#admin-dashboard-scope .tiptap-editor-container {
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--input-bg);
+  margin-top: var(--spacing-sm);
+  padding: 0;
+  transition: var(--transition);
+  position: relative;
+}
+
+#admin-dashboard-scope .tiptap-editor-container:focus-within {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+#admin-dashboard-scope .tiptap-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--surface-alt);
+  border-top-left-radius: var(--border-radius-sm);
+  border-top-right-radius: var(--border-radius-sm);
+  transition: var(--transition);
+}
+#admin-dashboard-scope .tiptap-toolbar button {
+  background: transparent;
+  border-left: 1px solid transparent;
+  color: var(--icon-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-xs);
+  cursor: pointer;
+  line-height: 1;
+  font-size: 1rem;
+  transition: var(--transition);
+  min-width: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#admin-dashboard-scope .tiptap-toolbar button:hover {
+  background-color: var(--border-light);
+  color: var(--text-primary);
+}
+#admin-dashboard-scope .tiptap-toolbar button.is-active {
+  background-color: var(--active-bg);
+  color: var(--active-text);
+}
+#admin-dashboard-scope .tiptap-content {
+  padding: var(--spacing-md);
+  min-height: 250px;
+  outline: none;
+  line-height: 1.7;
+  color: var(--text-primary);
+  transition: color var(--transition-duration) var(--transition-timing);
+  border-bottom-left-radius: var(--border-radius-sm);
+  border-bottom-right-radius: var(--border-radius-sm);
+}
+#admin-dashboard-scope .tiptap-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--text-secondary);
+  pointer-events: none;
+  height: 0;
+}
+/* Menus Flutuantes Tiptap */
+#admin-dashboard-scope .bubble-menu,
+#admin-dashboard-scope .floating-menu {
+  display: flex;
+  background-color: var(--surface);
+  padding: 0.4rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-2);
+  border: 1px solid var(--border);
+}
+#admin-dashboard-scope .bubble-menu button,
+#admin-dashboard-scope .floating-menu button {
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.tippy-content {
+  width: 360px;
+}
+
+#admin-dashboard-scope .bubble-menu button:hover,
+#admin-dashboard-scope .floating-menu button:hover {
+  background-color: var(--surface-alt);
+}
+#admin-dashboard-scope .bubble-menu button.is-active,
+#admin-dashboard-scope .floating-menu button.is-active {
+  background-color: var(--active-bg);
+  color: var(--active-text);
+}
+/* --- Fim: Editor Tiptap --- */
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* Mobile: uma coluna */
+  grid-template-rows: auto 1fr; /* Header implícito, conteúdo principal */
+  height: auto;
+  overflow: hidden;
+}
+
+/* Em telas maiores, muda para layout de 2 colunas */
+@media (min-width: 1024px) {
+  .editor-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+.editor-principal {
+  background-color: #fff;
+  padding: 0;
+  overflow-y: auto; /* Permite rolagem apenas na área de conteúdo */
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-content-area {
+  max-width: 800px;
+  margin: 2rem auto;
+  width: 100%;
+  padding: 0 2rem;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   Inputs de Título e Subtítulo Imersivos
+   ========================================================================== */
+.input-titulo,
+.input-subtitulo {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0.25rem 0;
+  color: #10161a;
+  outline: none;
+  box-shadow: none;
+  line-height: 1.2;
+  resize: none;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.input-titulo {
+  font-size: 2.75rem;
+  font-weight: 700;
+}
+
+.input-subtitulo {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #6c757d;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input-titulo:focus,
+.input-subtitulo:focus {
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* ==========================================================================
+   Editor Tiptap (ProseMirror)
+   ========================================================================== */
+.tiptap-editor-wrapper {
+  margin-top: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.tiptap-toolbar .tiptap-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 10px;
+}
+.tiptap-toolbar .tiptap-toolbar-group select {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+}
+
+.tiptap-toolbar .tiptap-toolbar-group select:focus {
+  outline: none;
+}
+
+.tiptap-content {
+  padding: 1rem 1.5rem;
+  min-height: 400px;
+}
+
+.ProseMirror {
+  /* Classe raiz do Tiptap */
+  line-height: 1.7;
+  font-family: "Georgia", "Times New Roman", Times, serif;
+  font-size: 1.1rem;
+  color: #10161a;
+  min-height: 30vh; /* Garante uma área mínima de digitação */
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+  font-style: italic;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2em auto;
+  border-radius: 15px;
+}
+
+.ProseMirror img:hover {
+  cursor: pointer;
+}
+
+.ProseMirror-selectednode {
+  outline: 3px solid #0d6efd;
+  box-shadow: 0 0 0 5px rgba(13, 110, 253, 0.25);
+}
+
+/* Estilo para o menu de contexto que aparece sobre o nó selecionado */
+.node-selection-menu {
+  display: flex;
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 100px;
+}
+
+/* Ajustes no botão dentro do novo menu para garantir a aparência */
+.node-selection-menu .button-post.danger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   Barra Lateral e Controles
+   ========================================================================== */
+.editor-barra-lateral {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .editor-barra-lateral {
+    padding: 1.5rem;
+  }
+}
+
+.sidebar-section {
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 0.8rem;
+}
+.sidebar-section.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.sidebar-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #10161a;
+  margin: 0 0 1rem 0;
+}
+
+.post-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.post-input-group:last-child {
+  margin-bottom: 0;
+}
+
+.post-input-group label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #3c434a;
+}
+
+.post-input-group input[type="text"],
+.post-input-group select,
+.post-input-group input[type="date"],
+.post-input-group input[type="time"] {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 0.9rem;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.post-input-group input:focus,
+.post-input-group select:focus {
+  outline: none;
+  border-color: #007cba;
+  box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.25);
+}
+
+.post-input-hint {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   Botões e Ações
+   ========================================================================== */
+.button-post {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 10px 12px !important;
+  border-radius: 15px !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  transition: all 150ms ease-in-out !important;
+  flex-grow: 1 !important;
+}
+
+.button-post.primary {
+  background-color: #007cba !important;
+  border: 1px solid #007cba !important;
+  color: #fff !important;
+}
+.button-post.primary:hover {
+  background-color: #005a87 !important;
+}
+
+.button-post.secundary {
+  background-color: #f0f0f0 !important;
+  border: 1px solid #ddd !important;
+  color: #1e1e1e !important;
+}
+.button-post.secundary:hover {
+  background-color: #e0e0e0 !important;
+}
+
+.button-post.tertiary.link-like {
+  border: none;
+  background: none;
+  color: #007cba;
+  padding: 0;
+  margin-top: 0;
+  font-weight: 400;
+  justify-content: center;
+  flex-grow: 0;
+}
+
+.button-post:disabled {
+  background-color: #e0e0e0 !important;
+  border-color: #e0e0e0 !important;
+  color: #a0a0a0 !important;
+  cursor: not-allowed !important;
+}
+.button-post.small {
+  padding: 6px 10px !important;
+  font-size: 0.8rem !important;
+}
+.button-post.icon-only {
+  padding: 8px !important;
+  flex-grow: 0 !important;
+}
+
+/* ==========================================================================
+   Imagem de Destaque e Cropper
+   ========================================================================== */
+.post-file-label {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px dashed #ced4da;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.post-file-label:hover {
+  background-color: #f0f0f0;
+}
+
+/* CORREÇÃO DO CROPPER */
+.cropper-post-section {
+  margin-top: 1rem;
+}
+.cropper-post-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #2e2e2e;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.cropper-post-container .reactEasyCrop_Container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.cropper-post-controls {
+  margin-top: 0.75rem;
+}
+.cropper-post-controls input[type="range"] {
+  width: 100%;
+}
+.cropper-post-controls .control-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.image-preview {
+  margin-top: 1rem;
+}
+.preview-content {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.preview-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #dee2e6;
+}
+.preview-content .button-post.danger {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: rgba(220, 53, 69, 0.8);
+  border: none;
+  color: white;
+}
+.preview-content .post-button.danger:hover {
+  background-color: #dc3545;
+}
+.image-preview .post-input-group {
+  margin-top: 1rem;
+}

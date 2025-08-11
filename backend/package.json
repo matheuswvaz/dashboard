@@ -1,0 +1,47 @@
+{
+  "name": "backend-dashboard",
+  "version": "1.0.0",
+  "description": "Backend para o Dashboard.",
+  "main": "src/server.js",
+  "type": "module",
+  "author": "Matheus Vaz",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "lint": "eslint . --ext .js --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext .js --fix",
+    "test": "echo \"Nenhum teste especificado para backend\" && exit 0",
+    "build": "echo \"Nenhum processo de build necessário para o servidor.\""
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "geoip-lite": "^1.4.10",
+    "he": "^1.2.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.14.0",
+    "node-cron": "^4.0.7",
+    "nodemailer": "^6.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

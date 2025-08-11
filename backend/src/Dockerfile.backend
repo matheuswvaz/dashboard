@@ -1,0 +1,26 @@
+# Use uma imagem oficial do Node.js mais recente e segura como imagem pai
+FROM node:22-alpine
+
+# Defina o diretório de trabalho no contêiner
+WORKDIR /usr/src/app
+
+# Copie package.json e package-lock.json (ou yarn.lock)
+COPY package*.json ./
+
+# Instale as dependências da aplicação
+RUN npm install
+# Se você tiver problemas com bcrypt ou outros módulos nativos no Alpine, pode precisar de ferramentas de build:
+# RUN apk add --no-cache --virtual .gyp python3 make g++ && npm install && apk del .gyp
+
+# Copie o código fonte da aplicação
+COPY . .
+
+# Exponha a porta para o mundo fora deste contêiner
+# A porta será definida pela variável de ambiente PORT no docker-compose.yml, com 5000 como padrão.
+EXPOSE ${PORT:-5000}
+
+# Defina a variável de ambiente
+ENV NODE_ENV development
+
+# Execute a aplicação quando o contêiner iniciar
+CMD ["npm", "run", "dev"] # Ou "npm", "start" ou "node", "server.js"

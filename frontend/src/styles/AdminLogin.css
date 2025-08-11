@@ -1,0 +1,333 @@
+#admin-login-scope {
+  /* Cores */
+  --login-clr-primary: #0078d4;
+  --login-clr-primary-dark: #005a9e;
+  --login-clr-text-on-primary: #ffffff;
+  --login-clr-success: #10893e;
+  --login-clr-success-bg: #dff6dd;
+  --login-clr-error: #d83b01;
+  --login-clr-error-bg: #fce8e9;
+  --azul-muito-claro: #e2f2ff;
+  --azul-claro: #f0f9ff;
+  --azul-medio: #fbfdff;
+  /* Ex: Azul padrão */
+  --azul-escuro: #64b5f6;
+
+  /* Tema Claro */
+  --login-bg: #ececec;
+  --login-surface: #f9f9f9;
+  --login-text-primary: #212529;
+  --login-text-secondary: #6c757d;
+  --login-border: #ced4da;
+  --login-input-bg: #ffffff;
+  --login-link: var(--login-clr-primary);
+
+  /* Fontes e Layout */
+  --login-font-family: inherit;
+  --login-border-radius: 4px;
+  --login-spacing: 8px;
+  --login-transition: 0.2s ease-in-out;
+
+  /* Aplica estilos base */
+  font-family: var(--login-font-family);
+  line-height: 1.6;
+}
+
+/* --- Estilos Globais para a Página (Aplicados ao Wrapper) --- */
+#admin-login-scope {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: calc(var(--login-spacing) * 2);
+  background: var(--login-bg);
+  /* Cor de fundo da página */
+  color: var(--login-text-primary);
+  /* Cor do texto principal */
+  transition:
+    background-color var(--login-transition),
+    color var(--login-transition);
+}
+
+/* --- Tema Escuro --- */
+
+body.dark-theme #admin-login-scope {
+  --login-bg: linear-gradient(to bottom, #000, #080e15, #040b19);
+  --login-surface: #1c2023;
+  --login-text-primary: #f8f9fa;
+  --login-text-secondary: #adb5bd;
+  --login-border: #495057;
+  --login-input-bg: #495057;
+  --login-link: #6ea8fe;
+
+  /* Re-aplica cores base escuras */
+  background-color: var(--login-bg);
+  color: var(--login-text-primary);
+}
+
+/* --- Card de Login --- */
+#admin-login-scope .login-card {
+  background-color: var(--login-surface);
+  color: var(--login-text-primary);
+  padding: calc(var(--login-spacing) * 6) calc(var(--login-spacing) * 6);
+  border-radius: var(--login-border-radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 30px;
+}
+
+/* Header */
+#admin-login-scope .login-header {
+  margin-bottom: calc(var(--login-spacing) * 4);
+}
+
+#admin-login-scope .login-logo {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-bottom: 0.5rem;
+  justify-items: center;
+}
+
+#admin-login-scope .login-logo img {
+  display: block;
+  max-width: 200px;
+}
+
+#admin-login-scope .login-card h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: #707070;
+}
+
+/* Formulário */
+#admin-login-scope .login-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: calc(var(--login-spacing) * 3);
+}
+
+#admin-login-scope .input-group {
+  position: relative;
+}
+
+#admin-login-scope .input-group input {
+  width: 100%;
+  padding: 12px 20px;
+  padding-top: calc(var(--login-spacing) * 2.25);
+  border: 1px solid var(--login-border);
+  border-radius: 20px;
+  background-color: transparent;
+  color: var(--login-text-primary);
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color var(--login-transition);
+}
+
+#admin-login-scope .input-group input:focus {
+  outline: none;
+  border-color: var(--login-clr-primary);
+  box-shadow: 0 0 0 1px var(--login-clr-primary);
+}
+
+#admin-login-scope .input-group label {
+  position: absolute;
+  top: calc(var(--login-spacing) * 2.25);
+  left: calc(var(--login-spacing) * 1.5);
+  color: var(--login-text-secondary);
+  background-color: var(--login-sur);
+  padding: 0 calc(var(--login-spacing) * 0.5);
+  font-size: 1rem;
+  /* Mesmo tamanho do input inicialmente */
+  pointer-events: none;
+  transition: all var(--login-transition);
+  transform-origin: left top;
+  /* Para garantir que comece no meio do padding */
+  transform: translateY(-50%);
+  top: 50%;
+  /* Começa centralizada verticalmente no espaço de padding */
+}
+
+/* Animação da Label: Sobe para FORA da caixa, acima da borda */
+#admin-login-scope .input-group input:focus+label,
+#admin-login-scope .input-group input:not(:placeholder-shown)+label,
+#admin-login-scope .input-group input:-webkit-autofill+label {
+  /* Move para cima (-50% dela mesma + ajuste fino) e encolhe */
+  transform: translateY(calc(-50% - var(--login-spacing) * 1.5)) scale(0.8);
+  top: var(--login-spacing);
+  /* Posiciona um pouco acima da borda superior */
+  left: calc(var(--login-spacing) * 1);
+  /* Pequeno recuo esquerdo */
+  color: var(--login-clr-primary);
+  font-weight: 500;
+}
+
+#admin-login-scope .input-group input::placeholder {
+  color: transparent;
+}
+
+/* Botões */
+#admin-login-scope .form-button {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition:
+    background-color var(--login-transition),
+    opacity var(--login-transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--login-spacing);
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+#admin-login-scope .form-button.primary {
+  background-color: var(--login-clr-primary);
+  color: var(--login-clr-text-on-primary);
+}
+
+#admin-login-scope .form-button.primary:hover:not(:disabled) {
+  background-color: var(--login-clr-primary-dark);
+}
+
+#admin-login-scope .form-button.full-width {
+  width: 100%;
+  margin-top: var(--login-spacing);
+  /* Espaço extra acima */
+}
+
+#admin-login-scope .form-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Botão Link */
+#admin-login-scope .form-button.link {
+  background: none;
+  color: var(--login-text-secondary);
+  padding: var(--login-spacing);
+  margin: calc(var(--login-spacing) * -1);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all var(--login-transition);
+}
+
+#admin-login-scope .form-button.link:hover:not(:disabled) {
+  transform: scale(1.05);
+  opacity: 0.8;
+  color: var(--login-clr-primary);
+}
+
+/* Links Container */
+#admin-login-scope .login-links {
+  margin-top: calc(var(--login-spacing) * 3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--login-spacing);
+}
+
+/* Mensagens */
+#admin-login-scope .login-message {
+  padding: var(--login-spacing) calc(var(--login-spacing) * 2);
+  margin-bottom: calc(var(--login-spacing) * 2);
+  border-radius: var(--login-border-radius);
+  font-size: 0.875rem;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+#admin-login-scope .login-message.error {
+  background-color: var(--clr-error-bg);
+  color: var(--clr-error);
+  border-color: rgba(217, 48, 37, 0.3);
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+#admin-login-scope .login-message.success {
+  background-color: var(--clr-success-bg);
+  color: var(--clr-success);
+  border-color: rgba(16, 138, 62, 0.3);
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+/* Spinner */
+#admin-login-scope .app-spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent !important;
+  border-radius: 50%;
+  display: inline-block;
+  animation: app-login-spin 0.6s linear infinite;
+  vertical-align: -0.15em;
+}
+
+#admin-login-scope .app-spinner.small {
+  width: 0.8em;
+  height: 0.8em;
+  border-width: 2px;
+}
+
+#admin-login-scope .app-spinner.light {
+  border-color: rgba(255, 255, 255, 0.7);
+  border-right-color: transparent !important;
+}
+
+@keyframes app-login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsividade */
+@media screen and (max-width: 480px) {
+  #admin-login-scope .login-card {
+    padding: calc(var(--login-spacing) * 3);
+    box-shadow: none;
+    border: none;
+  }
+
+  #admin-login-scope .login-links {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--login-spacing) * 2);
+  }
+}
+
+/* Correção para o preenchimento automático do navegador */
+#admin-login-scope .input-group input:-webkit-autofill,
+#admin-login-scope .input-group input:-webkit-autofill:hover,
+#admin-login-scope .input-group input:-webkit-autofill:focus,
+#admin-login-scope .input-group input:-webkit-autofill:active {
+  /* Este "truque" usa uma sombra interna gigante para cobrir o fundo injetado pelo navegador. */
+  -webkit-box-shadow: 0 0 0px 1000px var(--login-input-bg) inset;
+  /* Garante que a cor do texto seja a definida pelo seu tema, e não a padrão do navegador. */
+  -webkit-text-fill-color: var(--login-text-primary);
+  /* Outro hack para desabilitar a transição de cor do navegador, evitando que o fundo azul/amarelo apareça brevemente. */
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Garante que a label continue se movendo quando o campo é preenchido automaticamente */
+#admin-login-scope .input-group input:focus+label,
+#admin-login-scope .input-group input:not(:placeholder-shown)+label,
+#admin-login-scope .input-group input:-webkit-autofill+label {
+  transform: translateY(calc(-50% - var(--login-spacing) * 1.5)) scale(0.8);
+  top: var(--login-spacing);
+  left: calc(var(--login-spacing) * 1);
+  color: var(--login-clr-primary);
+  font-weight: 500;
+}

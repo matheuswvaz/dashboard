@@ -1,0 +1,79 @@
+/* Variáveis */
+:root {
+  --text-color-primary: #222222;
+  --text-color-secondary: #555555;
+  --link-color: #0056b3;
+  --link-hover-color: #003d80;
+  --border-color: #e0e0e0;
+  --background-color-light: #f8f9fa;
+  --background-color-white: #ffffff;
+  --background-color-snow: #f5f5f5;
+  --header-font-weight: 700;
+  --line-height-content: 1.75;
+  --menu-fixed-height: 70px;
+
+  /* Variáveis para animação */
+  --transition-duration-fast: 0.2s;
+  --transition-duration-normal: 0.3s;
+  --transition-timing-function: ease-in-out;
+  --clr-primary: #0078d4;
+  --clr-primary-dark: #005a9e;
+  --clr-primary-light: #e1f0ff;
+  --clr-text-on-primary: #ffffff;
+  --clr-success: #10893e;
+  --clr-success-bg: #dff6dd;
+  --clr-danger: #d83b01;
+  --clr-danger-bg: #fce8e6;
+  --clr-warning: #f9ab00;
+  --clr-warning-bg: #fff4e0;
+
+  /* Tema Claro (Padrão) */
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --surface-alt: #f1f3f4;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border: #dee2e6;
+  --border-light: #e9ecef;
+  --icon: var(--text-secondary);
+  --active-bg: var(--clr-primary-light);
+  --active-text: var(--clr-primary-dark);
+  --active-icon: var(--clr-primary-dark);
+  --link: var(--clr-primary);
+  --spinner-base: rgba(0, 120, 212, 0.2); /* Cor base do spinner */
+  --spinner-highlight: var(--clr-primary); /* Cor ativa do spinner */
+  --input-bg: var(--surface);
+  --input-focus-border: var(--clr-primary);
+  --input-focus-shadow: rgba(0, 120, 212, 0.1);
+  --button-secondary-text: var(--text-secondary);
+  --button-secondary-border: var(--border);
+  --button-secondary-hover-bg: var(--surface-alt);
+  --tag-bg: var(--border-light);
+  --tag-text: var(--text-secondary);
+
+  /* Layout & Fontes */
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 68px;
+  --header-height: 60px;
+  --border-radius: 4px;
+  --spacing-base: 8px;
+  --spacing-xs: calc(var(--spacing-base) * 0.5);
+  --spacing-sm: var(--spacing-base);
+  --spacing-md: calc(var(--spacing-base) * 1.5);
+  --spacing-lg: calc(var(--spacing-base) * 2.5);
+  --spacing-xl: calc(var(--spacing-base) * 4);
+  --transition-duration: 0.25s;
+  --transition-timing: ease-in-out;
+  --transition: all var(--transition-duration) var(--transition-timing);
+  --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05);
+  --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.1);
+
+  /* Estilos Base */
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
