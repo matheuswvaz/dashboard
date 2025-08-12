@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./styles/AdminLogin.css";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { motion } from "framer-motion";
+import DashboardIcon from "./assets/DashboardIcon.png"
 
 // URL Base da API
 const API_BASE_URL =
@@ -240,7 +241,8 @@ const AdminLogin = () => {
         key={isLoginMode || resetPasswordMode} // A chave muda quando o modo muda, forçando a re-animação
       >
         <div className="login-header">
-          <motion.h2 variants={itemVariants}>Dashboard Matheus</motion.h2>
+           <img src={DashboardIcon} alt="Ícone Dashboard" style={{ width: "100px" }}/>
+          <motion.h2 variants={itemVariants}>Acesso ao sistema</motion.h2>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form" noValidate>

@@ -1,7 +1,7 @@
 #admin-login-scope {
   /* Cores */
-  --login-clr-primary: #0078d4;
-  --login-clr-primary-dark: #005a9e;
+  --login-clr-primary: #8d8d8d;
+  --login-clr-primary-dark: #525252;
   --login-clr-text-on-primary: #ffffff;
   --login-clr-success: #10893e;
   --login-clr-success-bg: #dff6dd;
@@ -70,13 +70,12 @@ body.dark-theme #admin-login-scope {
   background-color: var(--login-surface);
   color: var(--login-text-primary);
   padding: calc(var(--login-spacing) * 6) calc(var(--login-spacing) * 6);
-  border-radius: var(--login-border-radius);
+  border-radius: 10px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 450px;
   text-align: center;
   border: 1px solid transparent;
-  border-radius: 30px;
 
 }
 
@@ -110,6 +109,7 @@ body.dark-theme #admin-login-scope {
   display: flex;
   flex-direction: column;
   margin-bottom: calc(var(--login-spacing) * 3);
+  gap: calc(var(--login-spacing) * 2.5);
 }
 
 #admin-login-scope .input-group {
@@ -121,7 +121,7 @@ body.dark-theme #admin-login-scope {
   padding: 12px 20px;
   padding-top: calc(var(--login-spacing) * 2.25);
   border: 1px solid var(--login-border);
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: transparent;
   color: var(--login-text-primary);
   font-size: 1rem;
@@ -176,7 +176,7 @@ body.dark-theme #admin-login-scope {
 #admin-login-scope .form-button {
   padding: 14px 20px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 0.9rem;
   font-weight: 600;
@@ -244,7 +244,7 @@ body.dark-theme #admin-login-scope {
 #admin-login-scope .login-message {
   padding: var(--login-spacing) calc(var(--login-spacing) * 2);
   margin-bottom: calc(var(--login-spacing) * 2);
-  border-radius: var(--login-border-radius);
+  border-radius: 10px;
   font-size: 0.875rem;
   text-align: center;
   border: 1px solid transparent;
@@ -254,7 +254,7 @@ body.dark-theme #admin-login-scope {
   background-color: var(--clr-error-bg);
   color: var(--clr-error);
   border-color: rgba(217, 48, 37, 0.3);
-  border-radius: 20px;
+  border-radius: 10px;
   margin-bottom: 20px;
 }
 

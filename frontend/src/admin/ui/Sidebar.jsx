@@ -106,7 +106,7 @@ const Sidebar = ({ userData, activeSection, setActiveSection, onLogout }) => {
             {sidebarCollapsed ? (
               <h1 className="logo-icon-collapsed" style={{margin: 'auto'}}>M</h1>
             ) : (
-              <h2 className="logo-full">Dashboard Matheus</h2>
+              <h2 className="logo-full">Dashboard</h2>
             )}
           </div>
           {/* Desktop Sidebar Toggle Button */}
@@ -128,7 +128,7 @@ const Sidebar = ({ userData, activeSection, setActiveSection, onLogout }) => {
               className="app-user-avatar-img"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "/placeholder-avatar.jpg";
+                e.target.src = "/placeholder-avatar.png";
               }}
             />
            

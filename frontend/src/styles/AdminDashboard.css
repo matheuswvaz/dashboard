@@ -1,8 +1,8 @@
 /* --- Início: Escopo Raiz e Variáveis --- */
 :root {
   /* Cores - Tema Claro */
-  --clr-primary: #0078d4;
-  --clr-primary-dark: #00569f;
+  --clr-primary: #7a7a7a;
+  --clr-primary-dark: #3b3b3b;
   --clr-primary-light: rgba(0, 120, 212, 0.1);
 
   --clr-success: #107c10;
@@ -14,7 +14,7 @@
   --clr-warning: #f7630c;
   --clr-warning-bg: rgba(247, 99, 12, 0.1);
 
-  --clr-info: #0078d4;
+  --clr-info: #8d8d8d;
   --clr-info-bg: rgba(0, 120, 212, 0.1);
 
   --bg: linear-gradient(
@@ -64,10 +64,10 @@
   --spacing-lg: calc(var(--spacing-base) * 3);
   --spacing-xl: calc(var(--spacing-base) * 4);
 
-  --border-radius-xs: 10px; /* Bordas mais arredondadas */
-  --border-radius-sm: 15px;
-  --border-radius-md: 20px;
-  --border-radius-lg: 25px;
+  --border-radius-xs: 5px; /* Bordas mais arredondadas */
+  --border-radius-sm: 7px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 12px;
 
   --transition-duration: 0.3s;
   --transition-timing: ease-out;
@@ -93,8 +93,8 @@
 
 /* Tema Escuro */
 #admin-dashboard-scope.dark {
-  --clr-primary: #55b2ff;
-  --clr-primary-dark: #0078d4;
+  --clr-primary: #858585;
+  --clr-primary-dark: #535353;
   --clr-primary-light: rgba(85, 178, 255, 0.15);
 
   --clr-success: #3cb83c;
@@ -106,7 +106,7 @@
   --clr-warning: #ffb366;
   --clr-warning-bg: rgba(255, 179, 102, 0.15);
 
-  --clr-info: #55b2ff;
+  --clr-info: #747474;
   --clr-info-bg: rgba(85, 178, 255, 0.15);
 
   --bg: linear-gradient(to bottom right, #252525, #1a1a1a);
@@ -245,6 +245,9 @@
   background-color: transparent; /* Permite que o background linear apareça */
   min-height: 100vh;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* --- Fim: Layout Principal --- */
 

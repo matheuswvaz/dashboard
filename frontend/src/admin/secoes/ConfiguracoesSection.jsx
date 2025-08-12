@@ -356,7 +356,7 @@ const AccountSettings = ({ userData, showFeedback, onUserUpdate }) => {
               src={
                 finalCroppedImageUrl ||
                 userData?.foto_url ||
-                "/placeholder-avatar.jpg"
+                "/placeholder-avatar.png"
               }
               alt="Avatar"
               className="profile-photo-preview"
